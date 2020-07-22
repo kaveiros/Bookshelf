@@ -1,6 +1,6 @@
 import React from 'react'
 import { Steps, Divider, Button, InputPicker } from 'rsuite';
-import { Panel, Input, Grid, Row, Col } from 'rsuite'
+import { Input, Grid, Row, Col } from 'rsuite'
 
 const rowStyle = {
     minHeight:'1.5em'
@@ -44,6 +44,8 @@ const category = [
 
 
 const BookDetails = (props) => {
+
+    const {addStep} = props
     return (
         <Grid fluid>
         <Row className="show-grid" style={rowStyle}>
@@ -127,7 +129,7 @@ const BookDetails = (props) => {
                 <Col xs={24} sm={24} md={8}>
                 </Col>
                 <Col xs={24} sm={24} md={8}>
-                <Button color="green">Επόμενο</Button>
+                <Button color="green" onClick={addStep}>Επόμενο</Button>
                 </Col>
             </Row>
         </Grid>

@@ -1,39 +1,34 @@
 import React, { useState } from 'react'
-import { Steps, Divider, Button, InputPicker } from 'rsuite';
-import { Panel, Input, Grid, Row, Col } from 'rsuite'
+
 import BookDetails from './BookDetails';
+import BookComments from './BookComments';
 
 
 const AddBook = (props) => {
 
-    const [step, setStep] = useState(0)
-    return (
-        <Panel>
-            <Steps current={step}>
-                <Steps.Item />
-                <Steps.Item />
-                <Steps.Item />
-                <Steps.Item />
-            </Steps>
-            <Divider />
+    const {step} = props;
+    const {addStep} = props;
+    const {removeStep} = props
+    
+    switch (step) {
+        case 0:
+        return (<BookDetails addStep={addStep}/>)
+        break
+        case 1:
+            return (<BookComments removeStep={removeStep}/>);
+        default:
+            return null
 
-            switch (step) {
-                case 0:
-                    
-                    break;
-                case 1:
+    }
 
-                break;
+
+    
+
             
-                default:
-                    break;
-            }
-            <BookDetails/>
             
 
-        </Panel>
 
-    )
+    
 }
 
 export default AddBook

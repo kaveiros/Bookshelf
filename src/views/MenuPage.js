@@ -3,6 +3,7 @@ import {Navbar, Nav, Dropdown, Icon, Container, Sidebar, Sidenav,Header, Content
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import  Books  from './Books';
 import AddBook from './AddBook';
+import BooksAddition from './BooksAddition';
 
 
 const headerStyles = {
@@ -116,7 +117,7 @@ const headerStyles = {
                 <Router>
                   <Switch>
                     <Route exact path="/books" component={Books}/>
-                    <Route exact path="/add-book" component={AddBook} />
+                    <Route exact path="/add-book" component={BooksAddition} />
                   </Switch>
                 </Router>
               </Content>
