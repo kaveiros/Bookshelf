@@ -1,6 +1,8 @@
 import React from 'react'
-import { Steps, Divider, Button, InputPicker } from 'rsuite';
-import { Input, Grid, Row, Col } from 'rsuite'
+import { Steps, Divider, Button, SelectPicker } from 'rsuite';
+import { Input, Grid, Row, Form, Col } from 'rsuite'
+import { useForm,Controller } from "react-hook-form";
+
 
 const rowStyle = {
     minHeight:'1.5em'
@@ -46,14 +48,25 @@ const category = [
 const BookDetails = (props) => {
 
     const {addStep} = props
+    const { register, handleSubmit, watch, errors, control } = useForm();
+    const onSubmit = data => {
+        addStep()
+        console.log(data);}
+
     return (
+        <Form onSubmit={handleSubmit(onSubmit)}>
         <Grid fluid>
         <Row className="show-grid" style={rowStyle}>
                 <Col xs={24} sm={24} md={8}>
 
                 </Col>
                 <Col xs={24} sm={24} md={8}>
-                        <InputPicker size="md" placeholder="Κατηγορία" data={category}/>
+                    <Controller 
+                                control={control}
+                                name="ReactDatepicker"
+                                as={
+                        <SelectPicker name="category" size="md" placeholder="Κατηγορία" data={category} control={control}/>
+                                }/>
                 </Col>
                 <Col xs={24} sm={24} md={8}>
 
@@ -74,7 +87,7 @@ const BookDetails = (props) => {
 
                 </Col>
                 <Col xs={24} sm={24} md={8}>
-                        <Input placeholder="Τίτλος" ></Input>
+                        <Input name="title" placeholder="Τίτλος" inputRef={register}></Input>
                 </Col>
                 <Col xs={24} sm={24} md={8}>
 
@@ -95,7 +108,7 @@ const BookDetails = (props) => {
 
                 </Col>
                 <Col xs={24} sm={24} md={8}>
-                        <Input placeholder="Συγγραφέας" ></Input>
+                        <Input name="writer" placeholder="Συγγραφέας" inputRef={register} ></Input>
                 </Col>
                 <Col xs={24} sm={24} md={8}>
 
@@ -116,7 +129,7 @@ const BookDetails = (props) => {
 
                 </Col>
                 <Col xs={24} sm={24} md={8}>
-                        <Input placeholder="Εκδότης" ></Input>
+                        <Input placeholder="Εκδότης" name="publisher" inputRef={register}></Input>
                 </Col>
                 <Col xs={24} sm={24} md={8}>
 
@@ -129,10 +142,11 @@ const BookDetails = (props) => {
                 <Col xs={24} sm={24} md={8}>
                 </Col>
                 <Col xs={24} sm={24} md={8}>
-                <Button color="green" onClick={addStep}>Επόμενο</Button>
+                <Button color="green" type="submit">Επόμενο</Button>
                 </Col>
             </Row>
         </Grid>
+        </Form>
     )
 } 
 
